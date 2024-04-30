@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>{{ bug.title }}</h1>
+    <p>{{ bug.description }}</p>
+
+    <!-- Ссылка для изменения проекта -->
+    <p><a href="{% url 'quality_control:update_bug' bug.id %}">Изменить отчет об ошибке</a></p>
+
+    <!-- Ссылка удаления проекта -->
+    <p><a href="{% url 'quality_control:delete_bug' bug.id %}"onclick="return confirm('Вы уверены, что хотите удалить этот отчет об ошибке?');">Удалить отчет об ошибке</a></p>
+
+        <h2>Принадлежит:</h2><ul>
+        <li style="font-size:20px">Проекту "{{ bug.project }}"</li>
+        <li style="font-size:20px">Задаче "{{ bug.task }}"</li></ul>
+        <h2>Статус</h2><p style="color:green">{{ bug.status }}</p>
+        <h2>Приоритет</h2><p style="color:green">{{ bug.priority }}<p>
+        <h2>Добавлен</h2><p style="color:red">{{ bug.created_at }}</p>
+        <h2>Изменен</h2><p style="color:red">{{ bug.updated_at }}</p>
+{% endblock %}

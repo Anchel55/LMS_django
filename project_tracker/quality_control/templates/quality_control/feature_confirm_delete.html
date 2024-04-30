@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>Удаление запроса на улучшение</h1>
+    <p>Вы уверены, что хотите удалить запрос "{{ feature.title }}"?</p>
+
+    <form action="{% url 'quality_control:delete_feature' feature.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Удалить">
+        <a href="{% url 'quality_control:feature_detail' feature.id %}">Отмена</a>
+    </form>
+{% endblock %}
